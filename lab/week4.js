@@ -24,6 +24,28 @@ async function pageLoaded() {
   // make it work first; then extract to the separate renderProduct
   // function after it's 100% working without it
   
+  function renderProduct(product) {
+    let outputElement = document.querySelector(".products")
+    outputElement.insertAdjacentHTML("beforeend",
+    `<div class="p-4 w-full md:w-1/2 lg:w-1/3">
+    <div class="border h-full p-4 flex flex-col">
+      <h2 class="text-lg font-bold mb-4">${product.name}</h2>
+      <div class="mb-4"><img src="${product.image}">
+      </div>
+      <div class="mb-4 text-gray-900">
+        ${product.description}
+      </div>
+      <div class="mt-auto text-purple-500 text-2xl">${product.price}</div>
+    </div>
+  </div>`
+    )
+  }
+
+  for(let i=0; i<json.products.length; i++) {
+    let product = json.products[i]
+    renderProduct(product)
+  }
+  
 }
 
 window.addEventListener('DOMContentLoaded', pageLoaded)
